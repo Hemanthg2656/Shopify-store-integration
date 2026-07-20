@@ -1,0 +1,1 @@
+export const SHOPIFY_STATE_COOKIE = "shopify_oauth_state";
