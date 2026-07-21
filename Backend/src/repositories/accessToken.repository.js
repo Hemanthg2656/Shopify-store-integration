@@ -26,7 +26,7 @@ export const update = async (client, storeId, tokenResponse) => {
 
   const encryptedToken = encryptAccessToken(tokenResponse.access_token);
   const values = [tokenResponse.scope, encryptedToken, storeId];
-  return result;
+  return await client.query(query, values);
 };
 
 export const findByStoreId = async (client, storeId) => {

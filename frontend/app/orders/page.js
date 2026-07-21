@@ -21,7 +21,7 @@ import {
   setDateTo,
   setSort,
   syncOrdersData,
-  page,
+  setPage,
 } from "@/redux/slices/orderSlice";
 import EmptyState from "@/components/UI/EmptyState";
 
@@ -67,6 +67,9 @@ const Orders = () => {
     page,
   ]);
 
+  const handlePageChange = (newPage) => {
+    dispatch(setPage(newPage));
+  };
   const handleSync = async () => {
     try {
       await dispatch(syncOrdersData()).unwrap();

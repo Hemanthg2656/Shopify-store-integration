@@ -14,6 +14,7 @@ import {
   setSearch,
   setSort,
   syncCustomersData,
+  setPage,
 } from "@/redux/slices/customerSlice";
 import EmptyState from "@/components/UI/EmptyState";
 import { Users, AlertTriangle } from "lucide-react";
@@ -51,6 +52,10 @@ const Customers = () => {
         page,
       }),
     );
+  };
+
+  const handlePageChange = (newPage) => {
+    dispatch(setPage(newPage));
   };
 
   const handleSync = async () => {

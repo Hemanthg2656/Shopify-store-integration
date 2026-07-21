@@ -19,6 +19,7 @@ const verifyAuth = (req, res, next) => {
       storeId: decoded.storeId,
       shop: decoded.shop,
       sessionId: decoded.sessionId,
+      role: decoded.role,
     };
 
     next();

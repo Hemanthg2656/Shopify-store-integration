@@ -205,6 +205,7 @@ export const createSession = async (user, store) => {
     storeId: store.id,
     shop: store.store_domain,
     sessionId: session.id,
+    role: user.role,
   };
   const refreshPayload = {
     sessionId: session.id,
@@ -284,6 +285,7 @@ export const refreshSession = async (refreshToken) => {
     storeId: store.id,
     shop: store.store_domain,
     sessionId: result.rows[0].id,
+    role: user.role,
   };
   const refreshPayload = {
     sessionId: result.rows[0].id,

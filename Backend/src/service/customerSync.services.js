@@ -1,5 +1,5 @@
 import * as syncLogServices from "./syncLog.services.js";
-import * as shopifyCustomerServices from "./shopifyCustomer.services.js";
+import * as shopifyCustomerServices from "./ShopifyCustomer.services.js";
 import * as customerRepository from "../repositories/customer.repository.js";
 
 

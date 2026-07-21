@@ -144,6 +144,7 @@ export const {
   setDateTo,
   setSort,
   clearOrders,
+  setPage
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

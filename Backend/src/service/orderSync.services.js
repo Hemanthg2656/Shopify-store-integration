@@ -1,5 +1,5 @@
 import * as syncLogServices from "./syncLog.services.js";
-import * as shopifyOrderServices from "./shopifyOrder.services.js";
+import * as shopifyOrderServices from "./ShopifyOrder.services.js";
 import * as orderRepository from "../repositories/order.repository.js";
 
 
