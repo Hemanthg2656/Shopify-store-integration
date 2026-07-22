@@ -10,8 +10,6 @@ import SummaryCards from "@/components/dashboard/SummaryCards";
 import RecentOrdersTable from "@/components/dashboard/RecentOrdersTable";
 import TopProductsTable from "@/components/dashboard/TopProductsTable";
 import OrderSummary from "@/components/dashboard/OrderSummary";
-import AnalyticsCards from "@/components/dashboard/AnalyticsCards";
-import OrderSummaryCards from "@/components/dashboard/OrderSummaryCards";
 import ProductStatusCards from "@/components/dashboard/ProductStatusCards";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import SyncStatusCard from "@/components/dashboard/SyncStatusCard";
@@ -101,7 +99,7 @@ const Dashboard = () => {
         lg:p-8
       "
     >
-      <DashboardHeader
+      <DashboardHeader className= 'mb-6 '
         onRefresh={handleRefresh}
         loading={loadingDashboard || loadingAnalytics}
       />
@@ -130,8 +128,7 @@ const Dashboard = () => {
           </p>
         </div>
       )}
-      <SyncStatusCard syncStatus={syncStatus} />
-      {summary && <SummaryCards summary={summary} />}
+      {/* {summary && <SummaryCards summary={summary} />}
       <div
         className="
             mb-8
@@ -146,12 +143,34 @@ const Dashboard = () => {
 
         <OrderSummary summary={analytics?.orderSummary} />
       </div>
-      <AnalyticsCards analytics={analytics} />
-      <OrderSummaryCards summary={analytics?.orderSummary} />
       <ProductStatusCards status={analytics?.productStatus} />
       <RecentOrdersTable orders={recentOrders} />
 
-      <TopProductsTable products={topProducts} />
+      <TopProductsTable products={topProducts} /> */}
+      <div className="flex flex-col gap-8">
+        <SyncStatusCard syncStatus={syncStatus} />
+
+        {summary && <SummaryCards summary={summary} />}
+        <div
+          className="
+      grid
+      gap-6
+      lg:grid-cols-3
+    "
+        >
+          <div className="lg:col-span-2">
+            <RevenueChart data={analytics?.monthlyRevenue || []} />
+          </div>
+
+          <OrderSummary summary={analytics?.orderSummary} />
+        </div>
+
+        <ProductStatusCards status={analytics?.productStatus} />
+
+        <RecentOrdersTable orders={recentOrders} />
+
+        <TopProductsTable products={topProducts} />
+      </div>
     </section>
   );
 };

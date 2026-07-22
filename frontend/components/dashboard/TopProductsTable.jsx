@@ -47,7 +47,7 @@ const TopProductsTable = ({ products }) => {
 
           <tbody>
             {products.length > 0 ? (
-              products.map((product) => (
+              products.slice(0, 5).map((product) => (
                 <tr
                   key={product.id}
                   className="

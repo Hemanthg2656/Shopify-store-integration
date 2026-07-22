@@ -13,7 +13,7 @@ const SummaryCards = ({ summary }) => {
       className="
         mb-8
         grid
-        gap-6
+        gap-8
         sm:grid-cols-2
         xl:grid-cols-4
       "

@@ -59,7 +59,7 @@ const RecentOrdersTable = ({ orders }) => {
 
           <tbody>
             {orders.length > 0 ? (
-              orders.map((order) => {
+              orders.slice(0, 5).map((order) => {
               
                 const orderDate = new Intl.DateTimeFormat("en-IN", {
                   day: "2-digit",

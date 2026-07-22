@@ -77,13 +77,15 @@ export default function ProfilePage() {
       className="
         mx-auto
         max-w-7xl
-        px-6
+        px-4
+        sm:px-6
+        lg:px-8
+        xl:px-10
         pt-24
-        pb-10
+        pb-20
+        min-h-auto
       "
     >
-      {/* Profile Header */}
-
       <div
         className="
           mb-8
@@ -136,7 +138,9 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <StoreProfileCard store={store} />
+      <div className="mb-10">
+        <StoreProfileCard store={store} />
+      </div>
     </section>
   );
 }
