@@ -12,6 +12,7 @@ router.get(
   "/:userId",
   verifyAuth,
   validateId("userId"),
+  ownership("userId"),
   userController.getUser,
 );
 

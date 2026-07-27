@@ -22,14 +22,13 @@ app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:3000",
     credentials: true,
-  })
+  }),
 );
 
 app.use(apiLimiter);
 
 app.use(express.json());
 app.use(cookieParser());
-
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/products", productRouter);
@@ -37,7 +36,15 @@ app.use("/api/v1/orders", orderRouter);
 app.use("/api/v1/customers", customerRouter);
 app.use("/api/v1/dashboard", dashboardRouter);
 app.use("/api/v1/store", storeRouter);
-app.use("/api/v1/sync",syncRouter);
+app.use("/api/v1/sync", syncRouter);
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).json({
+    success: false,
+    message: err.message || "Internal Server Error",
+  });
+});
 
 app.get("/", (req, res) => {
   res.send("API running");

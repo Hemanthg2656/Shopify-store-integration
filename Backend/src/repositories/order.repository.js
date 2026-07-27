@@ -107,7 +107,6 @@ export const findOrders = async (storeId, queryParams = {}) => {
     index++;
   }
 
- 
   let orderClause = "";
 
   switch (sort) {
@@ -127,7 +126,6 @@ export const findOrders = async (storeId, queryParams = {}) => {
       orderClause = `ORDER BY created_at_shopify DESC`;
   }
 
-
   const countQuery = `
     SELECT COUNT(*) AS total
     FROM orders
@@ -136,7 +134,6 @@ export const findOrders = async (storeId, queryParams = {}) => {
 
   const countResult = await pool.query(countQuery, values);
   const total = Number(countResult.rows[0].total);
-
 
   const ordersQuery = `
     SELECT *
@@ -176,4 +173,17 @@ export const deleteOrdersByStore = async (storeId) => {
   `;
 
   return await pool.query(query, [storeId]);
+};
+
+export const getTotalRevenue = async (storeId) => {
+  const result = await pool.query(
+    `
+    SELECT COALESCE(SUM(total_price), 0) AS total_revenue
+    FROM orders
+    WHERE store_id = $1
+    `,
+    [storeId],
+  );
+
+  return Number(result.rows[0].total_revenue);
 };

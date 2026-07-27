@@ -99,10 +99,11 @@ const Dashboard = () => {
         lg:p-8
       "
     >
-      <DashboardHeader className= 'mb-6 '
+      <div  className="mb-6">
+      <DashboardHeader 
         onRefresh={handleRefresh}
         loading={loadingDashboard || loadingAnalytics}
-      />
+      /></div>
       {firstSyncRequired && (
         <div className="mb-6 rounded-xl border border-blue-500/20 bg-blue-500/10 p-5">
           <h3 className="text-lg font-semibold text-white">
@@ -128,25 +129,6 @@ const Dashboard = () => {
           </p>
         </div>
       )}
-      {/* {summary && <SummaryCards summary={summary} />}
-      <div
-        className="
-            mb-8
-            grid
-            gap-6
-            lg:grid-cols-3
-      "
-      >
-        <div className="lg:col-span-2">
-          <RevenueChart data={analytics?.monthlyRevenue || []} />
-        </div>
-
-        <OrderSummary summary={analytics?.orderSummary} />
-      </div>
-      <ProductStatusCards status={analytics?.productStatus} />
-      <RecentOrdersTable orders={recentOrders} />
-
-      <TopProductsTable products={topProducts} /> */}
       <div className="flex flex-col gap-8">
         <SyncStatusCard syncStatus={syncStatus} />
 

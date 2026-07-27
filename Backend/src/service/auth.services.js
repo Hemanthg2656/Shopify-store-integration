@@ -94,7 +94,7 @@ export const exchangeAccessToken = async (shop, code) => {
 };
 
 export const getShopData = async (shop, accessToken) => {
-  const url = `https://${shop}/admin/api/2026-04/shop.json`;
+  const url = `https://${shop}/admin/api/${process.env.SHOPIFY_API_VERSION}/shop.json`;
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -212,7 +212,7 @@ export const createSession = async (user, store) => {
   };
   const accessToken = generateAccessToken(accessPayload);
   const refreshToken = generateRefreshToken(refreshPayload);
-  const hashedToken = hashRefreshToken(refreshToken)
+  const hashedToken = hashRefreshToken(refreshToken);
   await sessionServices.updateRefreshToken(session.id, hashedToken);
   return { accessToken, refreshToken };
 };
@@ -226,7 +226,7 @@ export const refreshSession = async (refreshToken) => {
 
   if (sessionResult.rowCount === 0) {
     const err = new Error("Invalid refresh token");
-    err.code="REFRESH_TOKEN_INVALID";
+    err.code = "REFRESH_TOKEN_INVALID";
     err.statusCode = 401;
     throw err;
   }
@@ -235,7 +235,7 @@ export const refreshSession = async (refreshToken) => {
   if (session.revoked_at) {
     const err = new Error("Invalid refresh token");
     err.statusCode = 401;
-    err.code = "SESSION_REVOKED"
+    err.code = "SESSION_REVOKED";
     throw err;
   }
   if (new Date(session.expires_at) < new Date()) {
@@ -244,7 +244,7 @@ export const refreshSession = async (refreshToken) => {
     err.statusCode = 401;
     throw err;
   }
-  const incomingHash = hashRefreshToken(refreshToken)
+  const incomingHash = hashRefreshToken(refreshToken);
   if (
     decodedToken.sessionId !== session.id ||
     incomingHash !== session.refresh_token
@@ -292,7 +292,7 @@ export const refreshSession = async (refreshToken) => {
   };
   const accessToken = generateAccessToken(accessPayload);
   const newRefreshToken = generateRefreshToken(refreshPayload);
-  const hashedToken = hashRefreshToken(newRefreshToken)
+  const hashedToken = hashRefreshToken(newRefreshToken);
   await sessionServices.updateRefreshToken(result.rows[0].id, hashedToken);
   return {
     accessToken,

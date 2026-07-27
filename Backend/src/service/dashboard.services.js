@@ -4,7 +4,7 @@ import { GET_DASHBOARD } from "../GraphQL/dashboardQueries.js";
 import { fetchAnalyticsData } from "../utils/fetchAnalyticsData.js";
 import * as productRepository from "../repositories/product.repository.js";
 import * as orderRepository from "../repositories/order.repository.js";
-import * as customerRepository from "../repositories/customer.repository.js"
+import * as customerRepository from "../repositories/customer.repository.js";
 
 import {
   buildMonthlyRevenue,
@@ -15,10 +15,11 @@ import {
 
 export const getDashboard = async (userData) => {
   const { storeId, shop } = userData;
-  const [products, orders, customers] = await Promise.all([
+  const [products, orders, customers, totalRevenue] = await Promise.all([
     productRepository.findProducts(storeId, { page: 1, limit: 1 }),
     orderRepository.findOrders(storeId, { page: 1, limit: 1 }),
     customerRepository.findCustomers(storeId, { page: 1, limit: 1 }),
+    orderRepository.getTotalRevenue(storeId),
   ]);
 
   const hasSyncedData =
@@ -48,10 +49,8 @@ export const getDashboard = async (userData) => {
     accessToken,
     query: GET_DASHBOARD,
   });
-  let totalRevenue = 0;
   const productMap = new Map();
   const recentOrders = data.orders.edges.map(({ node }) => {
-    totalRevenue += Number(node.currentTotalPriceSet.shopMoney.amount);
     node.lineItems.edges.forEach(({ node: item }) => {
       if (!item.product) return;
 
