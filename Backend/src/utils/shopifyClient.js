@@ -1,5 +1,5 @@
-
-const extractPageInfo = (linkHeader, rel = "next") => {
+import logger from "./logger.js";
+const extractPageInfo = (linkHeader, rel) => {
   if (!linkHeader) return null;
 
   const links = linkHeader.split(",");

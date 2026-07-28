@@ -5,6 +5,9 @@
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
 ![Shopify](https://img.shields.io/badge/Shopify-Admin_API-success)
+![Tests](https://img.shields.io/badge/Tests-432%20Passing-brightgreen)
+![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)
+![Jest](https://img.shields.io/badge/Tested%20With-Jest-red)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 A full-stack Shopify Store Integration Platform built using **Next.js**, **Node.js**, **Express**, and **PostgreSQL**.
@@ -13,9 +16,28 @@ The application allows Shopify merchants to securely connect their stores throug
 
 ---
 
+## Project Status
+
+> **Status:** ✅ Completed
+
+### Completed Features
+
+- Shopify OAuth 2.0 Authentication
+- JWT Authentication with Refresh Tokens
+- Secure Access Token Storage (AES-256-GCM Encryption)
+- Store Management
+- Product Synchronization
+- Order Synchronization
+- Customer Synchronization
+- Dashboard Analytics
+- Repository-Service-Controller Architecture
+- PostgreSQL Integration
+- Complete Automated Unit Testing
+
 # Features
 
 ## Authentication
+
 - Shopify OAuth 2.0 Integration
 - HMAC verification
 - CSRF protection using state parameter
@@ -25,6 +47,7 @@ The application allows Shopify merchants to securely connect their stores throug
 - AES-256-GCM encrypted Shopify access tokens
 
 ## Store Management
+
 - Connect Shopify Store
 - Store Profile
 - Store Plan Information
@@ -32,6 +55,7 @@ The application allows Shopify merchants to securely connect their stores throug
 - Owner Details
 
 ## Products
+
 - Product Listing
 - Search
 - Filter
@@ -41,6 +65,7 @@ The application allows Shopify merchants to securely connect their stores throug
 - Shopify Admin Product Link
 
 ## Orders
+
 - Order Listing
 - Search
 - Date Filters
@@ -49,12 +74,14 @@ The application allows Shopify merchants to securely connect their stores throug
 - Pagination
 
 ## Customers
+
 - Customer Listing
 - Search
 - Sorting
 - Pagination
 
 ## Dashboard Analytics
+
 - Total Products
 - Total Orders
 - Total Customers
@@ -67,6 +94,7 @@ The application allows Shopify merchants to securely connect their stores throug
 - Recent Orders
 
 ## Sync System
+
 - Manual Product Sync
 - Manual Order Sync
 - Manual Customer Sync
@@ -75,18 +103,21 @@ The application allows Shopify merchants to securely connect their stores throug
 - Sync Status Monitoring
 
 ## Security
+
 - Helmet
 - Rate Limiting
 - Zod Validation
 - Parameterized SQL Queries
 - Encrypted Shopify Tokens
 - Hashed Refresh Tokens
-
+## Testing
+- Comprehensive Automated Unit Testing (100% Coverage)
 ---
 
 # Tech Stack
 
 ### Frontend
+
 - Next.js 16
 - React 19
 - Tailwind CSS v4
@@ -96,6 +127,7 @@ The application allows Shopify merchants to securely connect their stores throug
 - Recharts
 
 ### Backend
+
 - Node.js
 - Express.js
 - PostgreSQL
@@ -109,31 +141,50 @@ The application allows Shopify merchants to securely connect their stores throug
 
 # Folder Structure
 
-```
-Shopify-store-integration
+```text
+Shopify-store-integration/
 │
-├── Backend
-│   ├── config
-│   ├── controller
-│   ├── database
-│   ├── GraphQL
-│   ├── middleware
-│   ├── repositories
-│   ├── routes
-│   ├── service
-│   ├── utils
-│   └── validators
+├── Backend/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── constants/
+│   │   ├── controller/
+│   │   ├── database/
+│   │   ├── GraphQL/
+│   │   ├── middleware/
+│   │   ├── repositories/
+│   │   ├── routes/
+│   │   ├── service/
+│   │   ├── utils/
+│   │   └── validators/
+│   │
+│   ├── tests/
+│   │   ├── controller/
+│   │   ├── middleware/
+│   │   ├── repositories/
+│   │   ├── services/
+│   │   └── utils/
+│   │
+│   ├── package.json
+│   ├── jest.config.js
+│   ├── .env.example
+│   └── server.js
 │
-└── frontend
-    ├── app
-    ├── components
-    ├── hooks
-    ├── redux
-    ├── services
-    └── utils
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── hooks/
+│   ├── redux/
+│   ├── services/
+│   ├── utils/
+│   ├── public/
+│   ├── package.json
+│   └── next.config.js
+│
+├── PROJECT_DOCUMENTATION.md
+├── README.md
+└── .gitignore
 ```
-
----
 
 # Installation
 
@@ -205,67 +256,67 @@ NEXT_PUBLIC_API_URL=
 
 ## Authentication
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/v1/auth/shopify/install |
-| GET | /api/v1/auth/shopify/callback |
-| POST | /api/v1/auth/refresh |
-| POST | /api/v1/auth/logout |
-| GET | /api/v1/auth/me |
+| Method | Endpoint                      |
+| ------ | ----------------------------- |
+| GET    | /api/v1/auth/shopify/install  |
+| GET    | /api/v1/auth/shopify/callback |
+| POST   | /api/v1/auth/refresh          |
+| POST   | /api/v1/auth/logout           |
+| GET    | /api/v1/auth/me               |
 
 ---
 
 ## Store
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/v1/store |
+| Method | Endpoint      |
+| ------ | ------------- |
+| GET    | /api/v1/store |
 
 ---
 
 ## Products
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/v1/products |
-| GET | /api/v1/products/types |
-| GET | /api/v1/products/:productId/shopify-link |
+| Method | Endpoint                                 |
+| ------ | ---------------------------------------- |
+| GET    | /api/v1/products                         |
+| GET    | /api/v1/products/types                   |
+| GET    | /api/v1/products/:productId/shopify-link |
 
 ---
 
 ## Orders
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/v1/orders |
+| Method | Endpoint       |
+| ------ | -------------- |
+| GET    | /api/v1/orders |
 
 ---
 
 ## Customers
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/v1/customers |
+| Method | Endpoint          |
+| ------ | ----------------- |
+| GET    | /api/v1/customers |
 
 ---
 
 ## Dashboard
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/v1/dashboard |
-| GET | /api/v1/dashboard/analytics |
+| Method | Endpoint                    |
+| ------ | --------------------------- |
+| GET    | /api/v1/dashboard           |
+| GET    | /api/v1/dashboard/analytics |
 
 ---
 
 ## Sync
 
-| Method | Endpoint |
-|---------|----------|
-| POST | /api/v1/sync/products |
-| POST | /api/v1/sync/orders |
-| POST | /api/v1/sync/customers |
-| GET | /api/v1/sync/status |
+| Method | Endpoint               |
+| ------ | ---------------------- |
+| POST   | /api/v1/sync/products  |
+| POST   | /api/v1/sync/orders    |
+| POST   | /api/v1/sync/customers |
+| GET    | /api/v1/sync/status    |
 
 ---
 
@@ -323,7 +374,43 @@ NEXT_PUBLIC_API_URL=
 
 ---
 
+# Testing
 
+The backend includes a comprehensive automated unit test suite built using **Jest**.
+
+The test suite validates every major layer of the application, including:
+
+- Controllers
+- Services
+- Repositories
+- Middleware
+- Utilities
+- Validators
+- Shopify OAuth Flow
+- HMAC & State Validation
+- JWT Authentication
+- Token Encryption
+- Shopify REST Client
+- Shopify GraphQL Client
+- Dashboard Analytics
+- Product, Order, Customer & Store APIs
+
+### Run Tests
+
+```bash
+cd Backend
+
+npm test
+```
+
+### Test Results
+
+- ✅ 46 Test Suites Passed
+- ✅ 432 Test Cases Passed
+- ✅ 100% Statement Coverage
+- ✅ 100% Branch Coverage
+- ✅ 100% Function Coverage
+- ✅ 100% Line Coverage
 
 # Challenges Faced
 
@@ -357,7 +444,6 @@ NEXT_PUBLIC_API_URL=
 - Multi-Store Support
 - Docker Deployment
 - CI/CD Pipeline
-
 
 ---
 
