@@ -23,7 +23,8 @@ const initDB = async () => {
     await pool.query(product_images);
     await pool.query(product_variants);
   } catch (error) {
-    console.log(error);
+    console.error("Database initialization failed:", error);
+    throw error;
   }
 };
 
