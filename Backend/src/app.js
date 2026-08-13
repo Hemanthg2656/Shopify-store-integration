@@ -15,7 +15,7 @@ import storeRouter from "./routes/store.routes.js";
 import syncRouter from "./routes/sync.routes.js";
 
 const app = express();
-
+app.set("trust proxy", 1);
 app.use(helmetMiddleware);
 
 app.use(
